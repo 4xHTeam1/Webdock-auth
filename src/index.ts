@@ -18,15 +18,17 @@ const app = new Elysia()
           version: "0.0.1",
         },
       },
+
+      path: "/v2/swagger",
     })
   )
   .get("/", () => `${process.env.SECRET}`)
   .post("/verify", async ({ jwt, body }) => {
     console.log(body);
 
-    const { t } = body as { t: string };
+    const { token } = body as { token: string };
 
-    const verification = await jwt.verify(t);
+    const verification = await jwt.verify(token);
 
     return verification;
   })
