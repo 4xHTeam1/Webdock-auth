@@ -21,7 +21,7 @@ const app = new Elysia()
     })
   )
   .get("/", () => `${process.env.SECRET}`)
-  .get("/verify", async ({ jwt, body }) => {
+  .post("/verify", async ({ jwt, body }) => {
     console.log(body);
 
     const { t } = body as { t: string };
